@@ -1,12 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { ThemeProvider } from '@material-ui/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { createMuiTheme } from '@material-ui/core/styles';
+import blueGrey from '@material-ui/core/colors/blueGrey';
+import amber from '@material-ui/core/colors/blue';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import App from './components/App';
+
+import rootReducer from './reducers';
+
+import './global.module';
+
+const theme = createMuiTheme({
+    palette: {
+        primary: blueGrey,
+        secondary: amber,
+        background: {
+            default: 'darkslategrey'
+        }
+    },
+    status: {
+        danger: 'orange',
+    },
+});
+
+const store = createStore(rootReducer);
+
+ReactDOM.render(
+    <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Provider store={store}>
+            <App/>
+        </Provider>
+    </ThemeProvider>,
+    document.getElementById('root')
+);
+
+export function dispatch() {
+    return store.dispatch.apply(store, arguments);
+}
+
+module.hot.accept();
