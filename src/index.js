@@ -6,8 +6,6 @@ import {createStore} from 'redux';
 import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createMuiTheme } from '@material-ui/core/styles';
-import blueGrey from '@material-ui/core/colors/blueGrey';
-import amber from '@material-ui/core/colors/blue';
 
 import App from './components/App';
 
@@ -17,10 +15,11 @@ import './global.module';
 
 const theme = createMuiTheme({
     palette: {
-        primary: blueGrey,
-        secondary: amber,
-        background: {
-            default: 'darkslategrey'
+        primary: {
+            main: '#ffffff',
+        },
+        secondary: {
+            main: '#91c6ff',
         }
     },
     status: {

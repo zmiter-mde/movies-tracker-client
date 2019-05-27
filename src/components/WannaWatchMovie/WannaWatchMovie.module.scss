@@ -1,8 +1,18 @@
-.movieCard {
-  max-width: 244px;
+.movieCardGridItem {
+  .movieCardWrapper {
+    background-color: transparent;
 
-  .movieImage {
-    width: 100%;
-    height: auto;
+    .movieCard {
+      max-width: 244px;
+
+      .movieImage {
+        width: 100%;
+        height: auto;
+      }
+
+      .movieBaseLink {
+        padding-right: 10px;
+      }
+    }
   }
 }

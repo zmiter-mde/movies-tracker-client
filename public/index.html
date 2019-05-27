@@ -13,18 +13,24 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="manifest.json" />
-    <title>React App</title>
+    <title>Movies Tracker</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root" class="app"></div>
+    <div class="background"></div>
+    <div id="root"></div>
     <script src="./bundle.js"></script>
   </body>
   <style>
-    .app {
-      background-image: url('dark_knight.jpg');
+    .background {
+      position: fixed;
+      background-image: url(dark_knight.jpg);
+      background-size: cover;
       background-repeat: repeat;
-      min-height: -webkit-fill-available;
+      height: 100%;
+      width: 100%;
+      z-index: -1000;
+      filter: brightness(40%);
     }
   </style>
 </html>

@@ -11,7 +11,7 @@ class App extends React.Component {
 
     render() {
         return <div className={styles.appWrapper}>
-            <AppBar position="static" color="primary">
+            <AppBar position="absolute" className={styles.appHeader}>
                 <Toolbar>
                     <Typography variant="h5" color="initial">
                         Wanna Watch List
