@@ -1,11 +1,11 @@
 import React from 'react';
-
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Link from '@material-ui/core/Link';
 import {Grid, Typography} from '@material-ui/core';
+import classnames from "classnames";
 
 import styles from './WannaWatchMovie.module.scss';
 
@@ -14,7 +14,7 @@ class WannaWatchMovie extends React.Component {
     render() {
         const {movie} = this.props;
         return <Grid item className={styles.movieCardGridItem}>
-            <Card className={styles.movieCardWrapper}>
+            <Card className={classnames({[styles.movieCardWrapper]: true, [styles.released]: movie.released})}>
                 <CardActionArea className={styles.movieCard}>
                     <CardMedia
                         component="img"

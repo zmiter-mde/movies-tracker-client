@@ -1,9 +1,22 @@
 .movieCardGridItem {
+  position: relative;
+
   .movieCardWrapper {
     background-color: transparent;
 
+    &.released::after {
+      content: "Released";
+      position: absolute;
+      top: -10px;
+      right: 0;
+      background: red;
+      color: #ffffff;
+      padding: 5px;
+      display: block;
+    }
+
     .movieCard {
-      max-width: 244px;
+      max-width: 240px;
 
       .movieImage {
         width: 100%;

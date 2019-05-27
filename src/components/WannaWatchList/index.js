@@ -30,7 +30,7 @@ class WannaWatchList extends React.Component {
             loader={<h4 className={styles.loading}>Loading...</h4>}
             endMessage={<h4 className={styles.endMessage}>Yay! You have seen it all</h4>}
             style={{overflow: "hidden"}}>
-            <Grid container spacing={1} justify="flex-start">
+            <Grid container spacing={1} justify="flex-start" className={styles.grid}>
                 {movies.map(movie => <WannaWatchMovie movie={movie} key={movie.id}/>)}
             </Grid>
         </InfiniteScroll>;
