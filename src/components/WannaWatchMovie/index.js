@@ -25,8 +25,8 @@ class WannaWatchMovie extends React.Component {
                     <CardContent>
                         <Typography variant="subtitle1" color="primary">{movie.titleEn}</Typography>
                         <Typography variant="subtitle2" color="primary">{movie.titleRu}</Typography>
-                        <Typography variant="button" className={styles.movieBaseLink}><Link href={movie.imdbLink} color="secondary">Imdb</Link></Typography>
-                        <Typography variant="button" className={styles.movieBaseLink}><Link href={movie.kinopoiskLink} color="secondary">Kinopoisk</Link></Typography>
+                        <Typography variant="button" className={styles.movieBaseLink}><Link target="_blank" href={movie.imdbLink} color="secondary">Imdb</Link></Typography>
+                        <Typography variant="button" className={styles.movieBaseLink}><Link target="_blank" href={movie.kinopoiskLink} color="secondary">Kinopoisk</Link></Typography>
                     </CardContent>
                 </CardActionArea>
             </Card>

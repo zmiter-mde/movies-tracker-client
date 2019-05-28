@@ -21,7 +21,7 @@ module.exports = {
                 use: ['babel-loader']
             },
             {
-                test: /\.module\.s(a|c)ss$/,
+                test: /\.module\.(scss|css)$/,
                 loader: [
                     isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
                     {
@@ -42,8 +42,8 @@ module.exports = {
                 ]
             },
             {
-                test: /\.s(a|c)ss$/,
-                exclude: /\.module.(s(a|c)ss)$/,
+                test: /\.(scss|css)$/,
+                exclude: /\.module.(scss)$/,
                 loader: [
                     isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
                     'css-loader',
@@ -54,11 +54,20 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {},
+                    }
+                ]
             }
         ]
     },
     resolve: {
-        extensions: ['*', '.js', '.jsx', '.scss']
+        extensions: ['*', '.js', '.jsx', '.scss', '.css']
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
@@ -71,6 +80,7 @@ module.exports = {
         })
     ],
     devServer: {
+        historyApiFallback: true,
         contentBase: './public',
         hot: true,
         port: 3000

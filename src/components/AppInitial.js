@@ -7,7 +7,7 @@ import WannaWatchList from './WannaWatchList';
 
 import styles from './App.module.scss';
 
-class App extends React.Component {
+class AppInitial extends React.Component {
 
     render() {
         return <div className={styles.appWrapper}>
@@ -25,4 +25,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default AppInitial;

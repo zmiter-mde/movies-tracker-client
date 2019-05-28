@@ -7,7 +7,11 @@ import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createMuiTheme } from '@material-ui/core/styles';
 
-import App from './components/App';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import AppInitial from './components/AppInitial';
+import App from './auth/App';
+import './auth/index.css';
 
 import rootReducer from './reducers';
 
@@ -33,7 +37,9 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
         <CssBaseline />
         <Provider store={store}>
-            <App/>
+            <Router>
+                <App />
+            </Router>
         </Provider>
     </ThemeProvider>,
     document.getElementById('root')
