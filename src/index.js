@@ -9,9 +9,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import AppInitial from './components/AppInitial';
-import App from './auth/App';
-import './auth/index.css';
+import App from './components/App';
 
 import rootReducer from './reducers';
 
@@ -20,10 +18,10 @@ import './global.module';
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: '#ffffff',
+            main: '#ffffff'
         },
         secondary: {
-            main: '#91c6ff',
+            main: '#91c6ff'
         }
     },
     status: {

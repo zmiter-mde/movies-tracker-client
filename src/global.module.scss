@@ -1,3 +1,10 @@
 theme.palette {
   background: darkslategrey;
 }
+
+a {
+  outline: none;
+  text-decoration: none;
+  word-wrap: break-word;
+  cursor: pointer;
+}
