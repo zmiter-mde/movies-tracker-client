@@ -1,9 +1,15 @@
-.loading, .endMessage {
-  color: white;
-  font-size: x-large;
-  text-align: center;
-}
+.wannaWatchListBody {
+  margin: 0 auto;
+  max-width: 1000px;
+  width: 80%;
 
-.grid {
-  padding-top: 20px;
+  .loading, .endMessage {
+    color: white;
+    font-size: x-large;
+    text-align: center;
+  }
+
+  .grid {
+    padding-top: 20px;
+  }
 }

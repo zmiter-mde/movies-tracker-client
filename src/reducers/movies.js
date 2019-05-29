@@ -1,5 +1,7 @@
 const initialState = {
-    movies: []
+    movies: [],
+    isLoading: false,
+    allMoviesLoaded: false
 };
 
 const movies = (state = initialState, action) => {
@@ -10,8 +12,16 @@ const movies = (state = initialState, action) => {
             return {
                 ...state,
                 movies: [...state.movies, ...action.movies],
+                isLoading: false,
                 allMoviesLoaded: action.allMoviesLoaded
             };
+
+        case 'LOADING_MOVIES': {
+            return {
+                ...state,
+                isLoading: action.isLoading
+            };
+        }
 
         default:
             return state;
