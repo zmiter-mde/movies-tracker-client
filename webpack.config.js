@@ -1,10 +1,23 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const isDevelopment = true;
-const SERVER_URL =
-    'https://desolate-springs-65318.herokuapp.com/';
-    //'http://localhost:8080/';
+let SERVER_URL = 'http://localhost:8080/';
+let CLIENT_URL = 'http://localhost:3000/';
+
+let isDevelopment = true;
+
+switch (process.env.TARGET) {
+    case "local":
+        SERVER_URL = 'http://localhost:8080/';
+        CLIENT_URL = 'http://localhost:3000/';
+        break;
+    case "prod":
+        SERVER_URL = 'https://desolate-springs-65318.herokuapp.com/';
+        CLIENT_URL = 'https://moviestracker.netlify.com/';
+        break;
+    default:
+        break;
+}
 
 module.exports = {
     entry: './src/index.js',
@@ -76,7 +89,8 @@ module.exports = {
             chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
         }),
         new webpack.DefinePlugin({
-            SERVER_URL: JSON.stringify(SERVER_URL)
+            SERVER_URL: JSON.stringify(SERVER_URL),
+            CLIENT_URL: JSON.stringify(CLIENT_URL)
         })
     ],
     devServer: {

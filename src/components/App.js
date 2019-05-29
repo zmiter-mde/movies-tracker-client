@@ -70,7 +70,8 @@ class App extends Component {
             <div>
                 <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout}/>
                 <Switch>
-                    <Route exact path="/" component={WannaWatchList}/>
+                    <PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+                                  component={WannaWatchList}/>
                     <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
                                   component={Profile}/>
                     <Route path="/login"
