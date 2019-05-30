@@ -51,6 +51,8 @@ class LoginForm extends Component {
                     <Grid container justify="space-between" direction="column">
                         <TextField
                             className={styles.textInput}
+                            fullWidth
+                            variant="outlined"
                             margin="dense"
                             required
                             id="email"
@@ -63,6 +65,8 @@ class LoginForm extends Component {
                         />
                         <TextField
                             className={styles.textInput}
+                            fullWidth
+                            variant="outlined"
                             margin="dense"
                             required
                             name="password"
@@ -73,7 +77,7 @@ class LoginForm extends Component {
                             autoComplete="current-password"
                             onChange={this.handleInputChange}
                         />
-                        <Button fullWidth type="submit" variant="contained">Login</Button>
+                        <Button fullWidth type="submit" variant="contained" className={styles.submitButton}>Login</Button>
                     </Grid>
                 </div>
             </form>

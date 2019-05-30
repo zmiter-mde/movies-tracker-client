@@ -4,7 +4,7 @@ import Alert from 'react-s-alert';
 
 import {signup} from '../../../actions/authActions';
 
-import styles from '../../Login/LoginForm/LoginForm.module.scss';
+import styles from './SignupForm.module.scss';
 
 
 class SignupForm extends Component {
@@ -51,6 +51,8 @@ class SignupForm extends Component {
                     <Grid container justify="space-between" direction="column">
                         <TextField
                             className={styles.textInput}
+                            fullWidth
+                            variant="outlined"
                             margin="dense"
                             required
                             id="name"
@@ -63,6 +65,8 @@ class SignupForm extends Component {
                         />
                         <TextField
                             className={styles.textInput}
+                            fullWidth
+                            variant="outlined"
                             margin="dense"
                             required
                             id="email"
@@ -74,6 +78,8 @@ class SignupForm extends Component {
                         />
                         <TextField
                             className={styles.textInput}
+                            fullWidth
+                            variant="outlined"
                             margin="dense"
                             required
                             name="password"
@@ -84,7 +90,7 @@ class SignupForm extends Component {
                             autoComplete="current-password"
                             onChange={this.handleInputChange}
                         />
-                        <Button fullWidth type="submit" variant="contained">Sign Up</Button>
+                        <Button fullWidth type="submit" variant="contained" className={styles.submitButton}>Sign Up</Button>
                     </Grid>
                 </div>
             </form>
