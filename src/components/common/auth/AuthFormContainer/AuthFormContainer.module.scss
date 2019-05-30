@@ -1,7 +1,18 @@
 .loginContainer {
-  background-color: #1d3236 !important;
-  opacity: 0.8;
+  background-color: transparent !important;
   max-width: 80%;
   width: 500px;
   margin: 0 auto;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+  height: 100vh;
+  position: relative;
+
+  .verticallyCentered {
+    position: absolute;
+    top: 25%;
+    transform: translateY(-50%);
+    width: 100%;
+  }
 }
