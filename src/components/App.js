@@ -4,10 +4,11 @@ import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 
-import WannaWatchList from './WannaWatchList';
+import WannaWatchList from './WannaWatchList/WannaWatchList';
+import AllMoviesList from './AllMoviesList';
+import SearchList from './SearchList';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
-import Profile from './Profile/Profile';
 import AppHeader from './AppHeader/AppHeader';
 import OAuth2RedirectHandler from './common/auth/OAuth2RedirectHandler';
 import NotFound from './common/NotFound';
@@ -62,22 +63,21 @@ class App extends Component {
     }
 
     render() {
-        if (this.state.loading) {
+        let { loading, authenticated, currentUser } = this.state;
+
+        if (loading) {
             return <LoadingIndicator />
         }
 
         return (
             <div>
-                <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout}/>
+                <AppHeader authenticated={authenticated} onLogout={this.handleLogout}/>
                 <Switch>
-                    <PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
-                                  component={WannaWatchList}/>
-                    <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
-                                  component={Profile}/>
-                    <Route path="/login"
-                           render={(props) => <Login authenticated={this.state.authenticated} {...props} />}/>
-                    <Route path="/signup"
-                           render={(props) => <Signup authenticated={this.state.authenticated} {...props} />}/>
+                    <PrivateRoute exact path="/" authenticated={authenticated} currentUser={currentUser} component={AllMoviesList}/>
+                    <PrivateRoute path="/wanna-watch-list" authenticated={authenticated} currentUser={currentUser} component={WannaWatchList}/>
+                    <PrivateRoute path="/search" authenticated={authenticated} currentUser={currentUser} component={SearchList}/>
+                    <Route path="/login" render={(props) => <Login authenticated={authenticated} {...props} />}/>
+                    <Route path="/signup" render={(props) => <Signup authenticated={authenticated} {...props} />}/>
                     <Route path="/oauth2redirect" component={OAuth2RedirectHandler}/>
                     <Route component={NotFound}/>
                 </Switch>
