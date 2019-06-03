@@ -5,7 +5,7 @@ import {Typography, InputBase, AppBar, Toolbar} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
 import styles from './AppHeader.module.scss';
-import {DEFAULT_PAGE_SIZE, loadAllMovies} from '../../actions/moviesActions';
+import {DEFAULT_PAGE_SIZE, loadMovies} from '../../actions/moviesActions';
 import {connect} from 'react-redux';
 
 const WAIT_INTERVAL = 1000;
@@ -19,6 +19,10 @@ class AppHeader extends React.Component {
         this.state = {
             value: null
         };
+
+        this.triggerChange = this.triggerChange.bind(this);
+        this.onSearchChange = this.onSearchChange.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
     }
 
     componentWillMount() {
@@ -31,7 +35,7 @@ class AppHeader extends React.Component {
 
             this.setState({ value: e.target.value });
 
-            this.timer = setTimeout(this.triggerChange.bind(this), WAIT_INTERVAL);
+            this.timer = setTimeout(this.triggerChange, WAIT_INTERVAL);
         }
     }
 
@@ -42,7 +46,7 @@ class AppHeader extends React.Component {
     }
 
     triggerChange() {
-        loadAllMovies(0, DEFAULT_PAGE_SIZE, "Search", this.state.value, true)
+        loadMovies(0, DEFAULT_PAGE_SIZE, "Search", this.state.value, true)
             .then(() => {
                 this.props.history.push("/search");
             });
@@ -64,8 +68,8 @@ class AppHeader extends React.Component {
                                 color="primary"
                                 margin="none"
                                 className={styles.searchInput}
-                                onChange={this.onSearchChange.bind(this)}
-                                onKeyDown={this.handleKeyDown.bind(this)}/>
+                                onChange={this.onSearchChange}
+                                onKeyDown={this.handleKeyDown}/>
                         </div>
                     </React.Fragment> }
                 <div className={styles.actionsContainer}>

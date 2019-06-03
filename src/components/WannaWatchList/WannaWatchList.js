@@ -4,9 +4,14 @@ import {CardMedia, Grid, Typography} from '@material-ui/core';
 
 import styles from './WannaWatchList.module.scss';
 import MoviesList from '../common/MoviesList';
-import {DEFAULT_PAGE_SIZE, loadAllMovies} from '../../actions/moviesActions';
+import {DEFAULT_PAGE_SIZE, loadMovies} from '../../actions/moviesActions';
 
 class WannaWatchList extends Component {
+
+    constructor(props) {
+        super(props);
+        this.fetchMoreData = this.fetchMoreData.bind(this);
+    }
 
     componentDidMount() {
         this.fetchMoreData();
@@ -15,7 +20,7 @@ class WannaWatchList extends Component {
     fetchMoreData() {
         const {movies, allMoviesLoaded, isLoading} = this.props;
         if (!allMoviesLoaded && !isLoading) {
-            loadAllMovies(movies.length / DEFAULT_PAGE_SIZE, DEFAULT_PAGE_SIZE, "MyWatchList");
+            loadMovies(Object.keys(movies).length / DEFAULT_PAGE_SIZE, DEFAULT_PAGE_SIZE, "MyWatchList");
         }
     }
 
@@ -26,7 +31,7 @@ class WannaWatchList extends Component {
             <CardMedia className={styles.avatar} image={imageUrl} title={username} />
             <Typography variant="body1" color="primary">Welcome, {name}!</Typography>
             <Typography variant="body2" color="primary">{email}</Typography>
-            <MoviesList movies={movies} allMoviesLoaded={allMoviesLoaded} fetchMoreData={this.fetchMoreData.bind(this)}/>
+            <MoviesList movies={movies} allMoviesLoaded={allMoviesLoaded} fetchMoreData={this.fetchMoreData}/>
         </Grid>;
     }
 }

@@ -17,7 +17,10 @@ const MoviesList = (props) => {
             endMessage={<h4 className={styles.endMessage}>Yay! You have seen it all</h4>}
             style={{overflow: "hidden"}}>
             <Grid container spacing={1} justify="flex-start" className={styles.grid}>
-                {movies.map(movie => <WannaWatchMovie movie={movie} key={movie.id}/>)}
+                {Object
+                    .values(movies)
+                    .sort((a, b) => a.releaseDate < b.releaseDate ? -1 : 1)
+                    .map(movie => <WannaWatchMovie movie={movie} key={movie.id}/>)}
             </Grid>
         </InfiniteScroll>
     </div>;

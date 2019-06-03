@@ -3,14 +3,19 @@ import {connect} from 'react-redux';
 
 import MoviesList from '../common/MoviesList';
 
-import {DEFAULT_PAGE_SIZE, loadAllMovies} from '../../actions/moviesActions';
+import {DEFAULT_PAGE_SIZE, loadMovies} from '../../actions/moviesActions';
 
 class SearchList extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.fetchMoreData = this.fetchMoreData.bind(this);
+    }
 
     fetchMoreData() {
         const {movies, allMoviesLoaded, isLoading, searchString} = this.props;
         if (!allMoviesLoaded && !isLoading) {
-            loadAllMovies(movies.length / DEFAULT_PAGE_SIZE, DEFAULT_PAGE_SIZE, "Search", searchString);
+            loadMovies(Object.keys(movies).length / DEFAULT_PAGE_SIZE, DEFAULT_PAGE_SIZE, "Search", searchString);
         }
     }
 
@@ -19,7 +24,7 @@ class SearchList extends React.Component {
         return <MoviesList
             movies={movies}
             allMoviesLoaded={allMoviesLoaded}
-            fetchMoreData={this.fetchMoreData.bind(this)}/>;
+            fetchMoreData={this.fetchMoreData}/>;
     }
 }
 

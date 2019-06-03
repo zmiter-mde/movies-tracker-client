@@ -1,5 +1,7 @@
+import {removeProperty} from '../util/commonUtil';
+
 const initialMovieListState = {
-    movies: [],
+    movies: {},
     isLoading: false,
     allMoviesLoaded: false
 };
@@ -22,10 +24,11 @@ const movies = (state = initialState, action) => {
 
         case 'SET_MOVIES':
             const movieLoadType = movieLoadTypeMap[action.movieLoadType];
+
             return action.replaceExisting ? {
                 ...state,
                 [movieLoadType]: {
-                    movies: [...action.movies],
+                    movies: {...action.movies},
                     isLoading: false,
                     allMoviesLoaded: action.allMoviesLoaded,
                     searchString: action.searchString
@@ -33,12 +36,48 @@ const movies = (state = initialState, action) => {
             } : {
                 ...state,
                 [movieLoadType]: {
-                    movies: [...state[movieLoadType].movies, ...action.movies],
+                    movies: {...state[movieLoadType].movies, ...action.movies},
                     isLoading: false,
                     allMoviesLoaded: action.allMoviesLoaded,
                     searchString: action.searchString
                 }
             };
+
+        case 'UPDATE_MOVIE_WATCH_LIST_STATE': {
+            let {movieId, wannaWatch, refreshWatchList}= action;
+            return {
+                ...state,
+                allMovies: state.allMovies.movies[movieId] ? {
+                    ...state.allMovies,
+                    movies: {
+                        ...state.allMovies.movies,
+                        [movieId]: {
+                            ...state.allMovies.movies[movieId],
+                            wannaWatch
+                        }
+                    }
+                } : {
+                    ...state.allMovies
+                },
+                movieSearch: state.movieSearch.movies[movieId] ? {
+                    ...state.movieSearch,
+                    movies: {
+                        ...state.movieSearch.movies,
+                        [movieId]: {
+                            ...state.movieSearch.movies[movieId],
+                            wannaWatch
+                        }
+                    }
+
+                } : {
+                    ...state.movieSearch
+                },
+                myWatchList: refreshWatchList ? { ...initialMovieListState } : {
+                    ...state.myWatchList,
+                    movies: removeProperty(movieId, state.myWatchList.movies)
+                }
+            };
+        }
 
         case 'LOADING_MOVIES': {
             const movieLoadType = movieLoadTypeMap[action.movieLoadType];
